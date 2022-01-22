@@ -3,25 +3,35 @@ package com.poohxx.earnapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.poohxx.earnapp.adapters.CategoryAdapter
+import com.poohxx.earnapp.adapters.ContentManager
 import com.poohxx.earnapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var adapter: CategoryAdapter? = null
     private var interAd: InterstitialAd? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initRcView()
         initAdMob()
-        (application as AppMainState).showAdIfAvailable(this){
-            Toast.makeText(this,"startApp",Toast.LENGTH_LONG).show()
-        }
-        binding.button.setOnClickListener{
-            showInterAd()
-        }
+        (application as AppMainState).showAdIfAvailable(this) {}
+
+
+    }
+
+    private fun initRcView() = with(binding) {
+        adapter = CategoryAdapter()
+        rcViewCat.layoutManager =
+            LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+        rcViewCat.adapter = adapter
+        adapter?.submitList(ContentManager.list)
     }
 
     override fun onResume() {
