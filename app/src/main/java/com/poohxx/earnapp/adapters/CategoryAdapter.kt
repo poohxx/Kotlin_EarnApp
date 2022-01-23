@@ -1,5 +1,7 @@
 package com.poohxx.earnapp.adapters
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ class CategoryAdapter:ListAdapter <String, CategoryAdapter.Holder>(Comparator())
         val binding = CategoryItemBinding.bind(view)
             fun setData(text: String)=with(binding){
                 tvCatTitle.text = text
+                linarCat.backgroundTintList = ColorStateList.valueOf(Color.parseColor(ContentManager.listColors[adapterPosition]))
             }
     }
     class Comparator : DiffUtil.ItemCallback<String>(){
