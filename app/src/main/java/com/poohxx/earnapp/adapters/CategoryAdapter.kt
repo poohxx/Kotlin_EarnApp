@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.poohxx.earnapp.R
 import com.poohxx.earnapp.databinding.CategoryItemBinding
 
-class CategoryAdapter:ListAdapter <String, CategoryAdapter.Holder>(Comparator()) {
+class CategoryAdapter(var listener:Listener):ListAdapter <String, CategoryAdapter.Holder>(Comparator()) {
     class Holder (view: View) : RecyclerView.ViewHolder(view){
-        val binding = CategoryItemBinding.bind(view)
-            fun setData(text: String)=with(binding){
+        private val binding = CategoryItemBinding.bind(view)
+            fun setData(text: String, listener: Listener)=with(binding){
                 tvCatTitle.text = text
-                linarCat.backgroundTintList = ColorStateList.valueOf(Color.parseColor(ContentManager.listColors[adapterPosition]))
+                cardViewCat.backgroundTintList = ColorStateList.valueOf(Color.parseColor(ContentManager.listColors[adapterPosition]))
+                itemView.setOnClickListener { listener.onClick(adapterPosition) }
             }
     }
     class Comparator : DiffUtil.ItemCallback<String>(){
@@ -35,8 +36,11 @@ class CategoryAdapter:ListAdapter <String, CategoryAdapter.Holder>(Comparator())
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.setData(getItem(position))
+        holder.setData(getItem(position), listener)
 
+    }
+    interface Listener{
+        fun onClick(pos:Int)
     }
 
 }

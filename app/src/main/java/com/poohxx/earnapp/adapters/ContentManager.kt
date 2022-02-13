@@ -2,20 +2,17 @@ package com.poohxx.earnapp.adapters
 
 object ContentManager {
     val list = arrayListOf(
-        "Работа",
-        "Семья",
-        "Отношения",
-        "Здоровье",
-        "Финансы",
+        "Принципы Продажника",
+        "Принципы Mенеджера",
+        "Принципы Личности"
 
 
     )
     val listColors = arrayListOf(
-        "#FFF44336",
-        "#FFFF9800",
-        "#FFFFC107",
-        "#FF4CAF50",
-        "#FF2196F3",
+    "#3B5391",
+    "#364F8E",
+    "#334d8d"
+
 
     )
 }
