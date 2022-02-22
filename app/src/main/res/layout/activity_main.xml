@@ -45,7 +45,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/green_top_message_picker">
+            android:background="@color/dark_deep_green_picker">
 
             <ImageView
                 android:id="@+id/imBg"
@@ -67,7 +67,7 @@
                 android:background="@null"
                 android:gravity="center"
                 android:padding="40dp"
-                android:textColor="@color/white_text_picker"
+                android:textColor="@color/green_picker"
                 android:textSize="14sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toTopOf="@+id/guideline4"
